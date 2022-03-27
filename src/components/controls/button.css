@@ -1,0 +1,10 @@
+.stop {
+  @apply h-10 w-30px cursor-pointer;
+  border-left: 10px solid #fff;
+  border-right: 10px solid #fff;
+}
+
+.play {
+  --custom-border-with: 20px 0 20px 30px;
+  @apply w-0 h-0 border-solid border-width-$custom-border-with border-transparent border-l-white cursor-pointer;
+}
