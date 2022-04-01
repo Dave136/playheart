@@ -1,12 +1,10 @@
+import { useState } from 'react';
 import { open } from '@tauri-apps/api/dialog';
 import { readDir } from '@tauri-apps/api/fs';
 // import { invoke } from '@tauri-apps/api/tauri';
-import { useState } from 'react';
 import Player from './components/Player';
-type SongPath = {
-  name: string;
-  path: string;
-};
+
+import type { SongPath } from './types';
 
 const App = () => {
   const [songs, setSongs] = useState<SongPath[]>();
@@ -14,10 +12,10 @@ const App = () => {
   const handleOpenDialog = async () => {
     const filesPath = await open({ directory: true });
     const dir = await readDir(filesPath as string);
-    const songs = dir.map(({ name, path }) => ({
-      name,
-      path,
-    })) as unknown as SongPath[];
+    const songs = dir.map<SongPath>((file) => ({
+      name: file?.name ?? '',
+      path: file?.path ?? '',
+    }));
 
     setSongs(songs);
 
