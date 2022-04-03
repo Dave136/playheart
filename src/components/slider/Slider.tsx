@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import type { ChangeEvent } from 'react';
 import './slider.css';
 import './thumb.css';
 
 type Props = {
   percentage: number;
-  onChange: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export default function Slider({
@@ -15,8 +16,8 @@ export default function Slider({
   const [marginLeft, setMarginLeft] = useState(-20);
   const [progressWidth, setProgressWidth] = useState(0);
 
-  let rangeRef = useRef<HTMLInputElement | undefined>();
-  let thumbRef = useRef<HTMLDivElement | undefined>();
+  let rangeRef = useRef<HTMLInputElement | null>(null);
+  let thumbRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const rangeWidth = rangeRef?.current?.getBoundingClientRect().width ?? 0;
