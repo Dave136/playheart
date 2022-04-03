@@ -1,7 +1,8 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAudio } from 'react-use';
 import { secondsToHms } from '../utils';
 import Slider from './slider/Slider';
+import type { ChangeEvent } from 'react';
 
 const src = '../../files/Attention - Charlie Puth.MP3';
 
