@@ -13,8 +13,10 @@ const PlayerUse = () => {
   });
 
   useEffect(() => {
-    const percent = ((state.time / state.duration) * 100).toFixed(2);
-    setPercentage(+percent);
+    const time = state?.time ?? 0;
+    const duration = state?.duration ?? 0;
+    const percent = ((time / duration) * 100).toFixed(2);
+    setPercentage(+percent ?? 0);
   }, [state.time]);
 
   const onChangeSlider = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -30,9 +32,9 @@ const PlayerUse = () => {
   });
 
   return (
-    <div>
+    <div className='col-span-2 bg-light-900'>
       {audio}
-      <pre>{JSON.stringify(state, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
       <Slider percentage={percentage} onChange={onChangeSlider} />
       {state.playing ? (
         <button
